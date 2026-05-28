@@ -36,6 +36,29 @@
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
+
+        ht: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Hold-Tap";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
+            flavor = "balanced";
+        };
+
+        htmo: htmo {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HTMO";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
+        };
     };
 
     rgb_encoder: rgb_encoder {
@@ -67,13 +90,11 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&td0       &kp A  &kp S  &kp D     &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp SPACE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &kp LGUI  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &kp RALT
+&trans  &kp Q           &kp W       &kp E               &kp R             &kp T                          &trans          &kp Y      &kp U                      &kp I                &kp O       &kp P     &trans
+&trans  &ht LEFT_GUI A  &ht LALT S  &ht LEFT_CONTROL D  &ht LEFT_SHIFT F  &kp G                  &trans  &trans  &trans  &kp H      &ht RIGHT_SHIFT J          &ht RIGHT_CONTROL K  &ht RALT L  &kp SEMI  &trans
+&trans  &kp Z           &kp X       &kp C               &kp V             &kp B        &trans            &trans          &kp N      &kp M                      &kp COMMA            &kp DOT     &kp FSLH  &trans
+                                    &htmo LGUI ESC      &htmo TAB TAB     &lt 3 SPACE                                    &kp SPACE  &htmo BACKSPACE BACKSPACE  &htmo DELETE DEL
             >;
-
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
         };
 
         lower_layer {
@@ -84,8 +105,6 @@
 &trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &mmv MOVE_DOWN                   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
                                          &trans        &trans        &trans                                                                          &kp INS          &kp DEL          &trans
             >;
-
-            sensor-bindings = <&scroll_encoder>;
         };
 
         raise_layer {
@@ -96,8 +115,6 @@
 &trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5   &trans                    &mmv MOVE_DOWN                   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
                                     &trans     &trans     &kp SPACE                                                             &kp RET    &trans     &trans
             >;
-
-            sensor-bindings = <&scroll_encoder>;
         };
 
         layer_3 {
@@ -108,8 +125,15 @@
 &trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
                                        &trans       &trans     &trans                                                                   &trans       &trans     &trans
             >;
+        };
 
-            sensor-bindings = <&scroll_encoder>;
+        layer_4 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                                    &trans  &trans  &trans
+            >;
         };
     };
 };
