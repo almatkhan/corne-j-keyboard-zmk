@@ -52,7 +52,7 @@
         htmo: htmo {
             compatible = "zmk,behavior-hold-tap";
             label = "HTMO";
-            bindings = <&kp>, <&kp>;
+            bindings = <&mo>, <&kp>;
 
             #binding-cells = <2>;
             tapping-term-ms = <220>;
@@ -90,49 +90,59 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&trans  &kp Q           &kp W       &kp E               &kp R             &kp T                          &trans          &kp Y      &kp U                      &kp I                &kp O       &kp P     &trans
-&trans  &ht LEFT_GUI A  &ht LALT S  &ht LEFT_CONTROL D  &ht LEFT_SHIFT F  &kp G                  &trans  &trans  &trans  &kp H      &ht RIGHT_SHIFT J          &ht RIGHT_CONTROL K  &ht RALT L  &kp SEMI  &trans
-&trans  &kp Z           &kp X       &kp C               &kp V             &kp B        &trans            &trans          &kp N      &kp M                      &kp COMMA            &kp DOT     &kp FSLH  &trans
-                                    &htmo LGUI ESC      &htmo TAB TAB     &lt 3 SPACE                                    &kp SPACE  &htmo BACKSPACE BACKSPACE  &htmo DELETE DEL
+&trans  &kp Q           &kp W       &kp E               &kp R             &kp T                          &trans          &kp Y    &kp U              &kp I                &kp O       &kp P               &trans
+&trans  &ht LEFT_GUI A  &ht LALT S  &ht LEFT_CONTROL D  &ht LEFT_SHIFT F  &kp G                  &trans  &trans  &trans  &kp H    &ht RIGHT_SHIFT J  &ht RIGHT_CONTROL K  &ht RALT L  &ht RIGHT_GUI SEMI  &trans
+&trans  &kp Z           &kp X       &kp C               &kp V             &kp B        &trans            &trans          &kp N    &kp M              &kp COMMA            &kp DOT     &kp FSLH            &trans
+                                    &htmo 4 ESC         &htmo 2 TAB       &lt 5 SPACE                                    &kp RET  &htmo 3 BACKSPACE  &htmo 5 DEL
             >;
         };
 
-        lower_layer {
+        pc_layer {
+            display-name = "QWERTY";
+            bindings = <
+&trans  &kp Q        &kp W       &kp E           &kp R             &kp T                          &trans          &kp Y    &kp U              &kp I            &kp O       &kp P           &trans
+&trans  &ht LCTRL A  &ht LALT S  &ht LEFT_GUI D  &ht LEFT_SHIFT F  &kp G                  &trans  &trans  &trans  &kp H    &ht RIGHT_SHIFT J  &ht RIGHT_GUI K  &ht RALT L  &ht RCTRL SEMI  &trans
+&trans  &kp Z        &kp X       &kp C           &kp V             &kp B        &trans            &trans          &kp N    &kp M              &kp COMMA        &kp DOT     &kp FSLH        &trans
+                                 &htmo 4 ESC     &htmo 2 TAB       &lt 5 SPACE                                    &kp RET  &htmo 3 BACKSPACE  &htmo 5 DEL
+            >;
+        };
+
+        num {
             display-name = "NUMBER";
             bindings = <
-&trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &mmv MOVE_UP                     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
-&trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
-&trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &mmv MOVE_DOWN                   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
-                                         &trans        &trans        &trans                                                                          &kp INS          &kp DEL          &trans
+&trans  &kp N1           &kp N2          &kp N3   &kp N4   &kp N5                             &trans          &kp N6           &kp N7           &kp N8           &kp N9           &kp N0  &trans
+&trans  &trans           &trans          &trans   &trans   &trans                     &trans  &trans  &trans  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &trans  &trans
+&trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans   &trans   &rgb_ug RGB_EFF  &trans            &trans          &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans  &trans
+                                         &kp ESC  &kp TAB  &kp SPACE                                          &kp RET          &kp BACKSPACE    &kp DELETE
             >;
         };
 
-        raise_layer {
+        symb {
             display-name = "SYMBOL";
             bindings = <
-&trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&trans  &bt BT_CLR    &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5   &trans                    &mmv MOVE_DOWN                   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                                    &trans     &trans     &kp SPACE                                                             &kp RET    &trans     &trans
+&trans  &kp EXCL   &kp AT             &kp HASH  &kp DLLR  &kp PRCNT                    &trans          &kp CARET  &kp AMPS       &kp ASTRK   &kp LPAR  &kp RPAR  &trans
+&trans  &kp GRAVE  &kp SINGLE_QUOTE   &trans    &trans    &trans               &trans  &trans  &trans  &kp MINUS  &kp EQUAL      &kp LBKT    &kp RBKT  &kp BSLH  &trans
+&trans  &kp TILDE  &kp DOUBLE_QUOTES  &trans    &trans    &trans     &trans            &trans          &kp UNDER  &kp PLUS       &kp LBRC    &kp RBRC  &kp PIPE  &trans
+                                      &kp ESC   &kp TAB   &kp SPACE                                    &kp RET    &kp BACKSPACE  &kp DELETE
             >;
         };
 
-        layer_3 {
+        bt {
+            bindings = <
+&trans  &out OUT_TOG  &trans        &trans        &trans        &out OUT_USB                    &trans          &out OUT_BLE  &trans  &trans  &trans  &to 1   &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4            &trans  &trans  &trans  &trans        &trans  &trans  &trans  &to 0   &trans
+&trans  &trans        &trans        &trans        &trans        &trans        &trans            &trans          &trans        &trans  &trans  &trans  &trans  &trans
+                                    &trans        &trans        &trans                                          &trans        &trans  &trans
+            >;
+        };
+
+        fn {
             display-name = "Fn";
             bindings = <
-&studio_unlock  &kp F1      &kp F2     &kp F3       &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans          &trans      &mkp LCLK  &mkp MCLK    &mkp RCLK  &mkp MB4                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                                       &trans       &trans     &trans                                                                   &trans       &trans     &trans
-            >;
-        };
-
-        layer_4 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans                                    &trans  &trans  &trans
+&trans  &kp F1  &kp F2  &kp F3   &kp F4   &kp F5                       &trans          &kp F6    &kp F7         &kp F8      &kp F9     &kp F10  &trans
+&trans  &trans  &trans  &trans   &trans   &trans               &trans  &trans  &trans  &kp LEFT  &kp DOWN       &kp UP      &kp RIGHT  &trans   &trans
+&trans  &trans  &trans  &trans   &kp F11  &kp F12    &trans            &trans          &kp F12   &kp F11        &trans      &trans     &trans   &trans
+                        &kp ESC  &kp TAB  &kp SPACE                                    &kp RET   &kp BACKSPACE  &kp DELETE
             >;
         };
     };
